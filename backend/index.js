@@ -8,7 +8,8 @@ const app = express();
 const PORT = process.env.PORT || 3002;
 
 app.use(cors());
-app.use(express.urlencoded())
+app.use(express.urlencoded());
+app.use(express.json());
 
 // api connection
 app.use('/api' , router);
