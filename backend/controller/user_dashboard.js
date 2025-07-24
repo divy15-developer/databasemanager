@@ -171,9 +171,12 @@ async function store_database_connection(req, res, next) {
 async function get_database_sources_list(req,res,next){};
 
 async function search_show_database_list(req,res,next){
-    const {db_name} = req.query;
+    const {db_name} = req.params;
+    console.log(db_name);
     try {
         const dbListRes = await pgClient.query('SELECT * FROM user_dashboard_serach_show_database_connection_list($1)', [db_name]);
+
+        console.log(dbListRes.rows);
 
         resHandler(res , 1 , 'data' , dbListRes.rows);
     } catch (error) {
