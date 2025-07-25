@@ -15,11 +15,12 @@ const ShowDBListView = () => {
             style={{zIndex : 1}}>
             <ul className="">
               {search_db_list.map((items , index) => (
-                <li key={index} className="">
-                   <div className="flex items-center hover:text-[18px] hover:border-b-[1px] transition-all duration-[100ms]"> 
+                <div 
+                className="flex items-center hover:text-[18px] hover:border-b-[1px] transition-all duration-[100ms] w-[200px]">
+                <li key={index} className=""> 
                     <label className="p-2">{items.database_name} </label>
-                    <input type="checkbox" className="p-2"/> </div>
                 </li>
+                </div>
               ))}
             </ul>
             </div>
