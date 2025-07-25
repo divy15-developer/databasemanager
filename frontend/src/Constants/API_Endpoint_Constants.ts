@@ -1,5 +1,5 @@
 
-const proxy_connection = 'http://192.168.0.58:3002/api'
+const proxy_connection = 'http://192.168.0.58:3003/api'
 
 export const Api_Endpoint_Constants = [
     {dashboard : {

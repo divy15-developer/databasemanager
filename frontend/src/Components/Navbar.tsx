@@ -1,4 +1,4 @@
-import {is_add_db_conn_btn_click } from '../ReducerSlice/UserDashboard';
+import {is_add_db_conn_btn_click , search_show_db_list_view} from '../ReducerSlice/UserDashboard';
 import { useDispatch} from 'react-redux';
 import Serch from "../assets/search-svgrepo-com.svg";
 import  {get_db_list} from "../Actions/UserDashboard";
@@ -17,6 +17,10 @@ const Navbar = () => {
 
         if(db_name != "" || !db_name || db_name != undefined){
         await get_db_list({db : db_name} , Dispatch);
+        };
+
+        if(db_name === "" || !db_name || db_name === undefined){
+            Dispatch(search_show_db_list_view(false));
         };
         
     };
