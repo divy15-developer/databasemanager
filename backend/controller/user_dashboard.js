@@ -176,16 +176,26 @@ async function search_show_database_list(req,res,next){
     try {
         const dbListRes = await pgClient.query('SELECT * FROM user_dashboard_serach_show_database_connection_list($1)', [db_name]);
 
-        console.log(dbListRes.rows);
-
         resHandler(res , 1 , 'data' , dbListRes.rows);
     } catch (error) {
-        console.log(error);
         errorHandler(res , 1 , 'error' , error.message)
     }
 };
 
+async function get_all_db_info(req, res, next){
+  try {
+    const {db_id} = req.body;
+    const result = await pgClient.query('select * from user_dashboard_get_all_db_info($1)', [db_id]);
+
+    resHandler(res , 1 , 'data', result.rows);
+  } catch (error) {
+    console.log("😈 Erro from get_db_info :", error);
+    errorHandler(res , 1, 'error', error.message);
+  }
+}
+
 module.exports = {
     store_database_connection: store_database_connection,
-    search_show_database_list:search_show_database_list
+    search_show_database_list:search_show_database_list,
+    get_all_db_info: get_all_db_info
 };
