@@ -1,10 +1,12 @@
-import {is_add_db_conn_btn_click , search_show_db_list_view} from '../ReducerSlice/UserDashboard';
-import { useDispatch} from 'react-redux';
+import {is_add_db_conn_btn_click , search_show_db_list_view, searchDBListInput} from '../ReducerSlice/UserDashboard';
+import { useDispatch , useSelector} from 'react-redux';
+import type { RootState } from '../ReducerStore/Store';
 import Serch from "../assets/search-svgrepo-com.svg";
 import  {get_db_list} from "../Actions/UserDashboard";
 
 const Navbar = () => {
 
+    let SearchDBListInputValues = useSelector((state : RootState) => state.userDahsboardState.searchDBListInput);
     const Dispatch = useDispatch();
 
     const handle_add_db_conn_btn = () => {
@@ -12,8 +14,9 @@ const Navbar = () => {
     };
 
     const handle_search_db_name = async (value : string) => {
-        console.log(value);
          let db_name = value.trim();
+
+         Dispatch(searchDBListInput(db_name))
 
         if(db_name != "" || !db_name || db_name != undefined){
         await get_db_list({db : db_name} , Dispatch);
@@ -42,7 +45,11 @@ const Navbar = () => {
                 <div className="input-group">
                 <div className="flex items-center"><img src={Serch} alt="Search" style={{height:"20px"}} /></div>
                 <div className="mx-2 border-none">
-                    <input type="text" className="border-none focus:outline-none focus:ring-0" placeholder="Serch" onChange={(e) => handle_search_db_name(e.target.value)}/>
+                    <input type="text" 
+                    className="border-none focus:outline-none focus:ring-0" 
+                    placeholder="Serch" 
+                    onChange={(e) => handle_search_db_name(e.target.value)}
+                    value={SearchDBListInputValues}/>
                 </div>
                 </div>
             </div>
