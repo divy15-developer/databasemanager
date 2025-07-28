@@ -59,8 +59,8 @@ const Add_DB_Connection_Form = (ArrayConstants: FormField[]) => {
             <div className="container-fluid m-0 p-0">
                  <form onSubmit={formik.handleSubmit}>
                 {ArrayConstants.map(({ name, label, type } , index) => (
-                    <div key={index}>
-                            <div className="row m-1">
+                    <div key={index} className="m-3">
+                            <div className="row">
                                 <div className="col-5">
                                     <label
                                         htmlFor={name}
@@ -88,7 +88,7 @@ const Add_DB_Connection_Form = (ArrayConstants: FormField[]) => {
                             </div>
                         </div>
                 ))}
-                <div className="flex justify-between">
+                <div className="flex justify-between m-3">
                     <div><button className="btn btn-danger">Cancel</button></div>
                     <div><button className="btn btn-success" type="submit">Submit</button></div>
                 </div>
